@@ -104,10 +104,11 @@ function createBranch(name) {
     alert("This branch already exists.");
     return;
   }
-  recordHistory(`git branch ${name}`, "Create a new branch from current tip.");
+  recordHistory(`git checkout -b ${name}`, "Create and switch to a new branch.");
   ensureBranch(name);
   // new branch starts at current tip
   state.branches[name].tip = state.branches[state.head.branch].tip;
+  state.head.branch = name;
   renderAll();
 }
 
